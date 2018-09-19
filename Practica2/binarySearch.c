@@ -29,9 +29,9 @@ void binarySearch(int *A, int n, int buscar){
 		}
 	}
 	if(bandera == '0')
-		printf("El numero no esta en el arreglo.");
+		printf("El numero no esta en el arreglo.\n");
 	else
-		printf("El numero se encuentra en la posicion: %d", medio+1);
+		printf("El numero se encuentra en la posicion: %d\n", medio+1);
 }
 
 /***********FUNCION PRINCIPAL***************/
@@ -49,10 +49,8 @@ int main(int argc, char const *argv[]){
 		tam=atoi(argv[1]);
 	}
 	
-	// printf("Ingrese longitud:");
-	scanf("%d", &tam);
+	//scanf("%d", &tam);
 
-	// printf("Ingrese dato a buscar:");
 	scanf("%d", &buscar);
 	
 	Arreglo = (int*)malloc(sizeof(int)*tam);
