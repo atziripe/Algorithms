@@ -22,15 +22,19 @@ void sequentialSearch(int *A, int n, int buscar){
 
 /***********FUNCION PRINCIPAL***************/
 /* Toma como entrada la longitud del arreglo y el elemento a buscar. */
-int main(){ 
+int main(int argc, char const *argv[]){ 
 	int *Arreglo; // Se declara el contenedor de elemento.
 	int tam, i, j; // Se declaran variables auxiliares para realizar el cambio.
 	int busq;
+|	if(argc!=2){
+		printf("\nIndique el tamanio del algoritmo - Ejemplo: [user@equipo]$ %s 100\n",argv[0]);
+		exit(1);
+	} 
+	//Tomar el segundo argumento como tamanio del algoritmo
+	else{
+		tam=atoi(argv[1]);
+	}
 	
-	printf("Ingrese el tamanio: ");
-	scanf("%d", &tam);
-	
-	printf("Ingrese el num a buscar: ");
 	scanf("%d", &busq);
 	
 	Arreglo = (int*)malloc(sizeof(int)*tam);
