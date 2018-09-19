@@ -49,10 +49,10 @@ int main(int argc, char const *argv[]){
 		tam=atoi(argv[1]);
 	}
 	
-	// printf("Ingrese los elementos:\n");
+	// printf("Ingrese longitud:");
 	scanf("%d", &tam);
 
-	// printf("Ingrese los elementos:\n");
+	// printf("Ingrese dato a buscar:");
 	scanf("%d", &buscar);
 	
 	Arreglo = (int*)malloc(sizeof(int)*tam);
