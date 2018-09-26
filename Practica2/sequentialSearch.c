@@ -10,14 +10,19 @@ PEREZ GARCIA ATZIRI***/
 /* La funcion recibe como parametros el arreglo, el tamaño de este y el dato a buscar.
  Regresa la posicion donde se encuentra el dato, o en caso contrario si este no se encuentra. */
 void sequentialSearch(int *A, int n, int buscar){
-	int j;
+	int j, bandera = 0;
 	
 	for(j=0; j<n; j++){
 		if(buscar == *(A+j)){
-			printf("El elemento esta en la posicion: %d \n", j+1);
+			bandera = '1';
 		}
 	}
 	
+	if(bandera == 1){
+		printf("Numero encontrado.\n");
+		// printf("El elemento esta en la posicion: %d \n", j+1);
+	} else
+		printf("Numero no encontrado.\n");
 }
 
 /***********FUNCION PRINCIPAL***************/
@@ -35,13 +40,19 @@ int main(int argc, char const *argv[]){
 		tam=atoi(argv[1]);
 	}
 	
-	scanf("%d", &busq);
+	// Dato a buscar
+	if(argc!=3){
+		printf("\nIndique numero a buscar - \nEjemplo: [user@equipo]$ %s %s 1000 \n",argv[0],argv[1]);
+		exit(-1);
+	}
+	busq=atoi(argv[3]);
+	// scanf("%d", &busq);
 	
 	Arreglo = (int*)malloc(sizeof(int)*tam);
 	
-	printf("Ingrese los elementos:\n");
+	// printf("Ingrese los elementos:\n");
 	for(i=0; i<tam; i++){
-		scanf("%d", &Arreglo[i]);
+		scanf("%d", (Arreglo+i));
 	}
 	
 	sequentialSearch(Arreglo,tam,busq);
