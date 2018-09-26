@@ -1,4 +1,4 @@
-/*****************BUSQUEDA SECUENCIAL**************************
+//*****************BUSQUEDA SECUENCIAL**************************
 LORETTO ESTRADA GALILEA AMERICA
 PEREZ GARCIA ATZIRI***/
 
@@ -11,38 +11,58 @@ PEREZ GARCIA ATZIRI***/
 int NumThreads;
 
 /********ESTRUCTURA AUXILIAR PARA LOS ARGUMENTOS********/
-struct argumentos{
+typedef struct argumentos{
 	int id;
 	int dato;
 	int *arreglo;
 	int n;
-};
+} *datos;
 
 /********THREAD BUSQUEDA SECUENCIAL********/
 void *sequentialSearch(void *recibido){
 	int bandera = '0'; // Para saber si el elemento se encontro.
-	struct argumentos *ptr = (struct argumentos *)recibido;
+	int c = 0, inicio = 0, fin = 0;
+	int *arregloNuevo = 0;
 	
-	int *arregloRecibido = ptr -> arreglo;
+	datos ptr = (datos)recibido;
+	
+	int *arregloRecibido;
 	int datoABuscarRecibido =  ptr -> dato;
 	int tamRecibido = ptr -> n;
 	int n_Thread = ptr -> id;
-	
-	for(int i=0; i<tamRecibido; i++){
-		if(datoABuscarRecibido == arregloRecibido[i]){
+	arregloRecibido=(int *)malloc(sizeof(int)*tamRecibido);
+	arregloRecibido = ptr -> arreglo;
+
+	inicio=(n_Thread*tamRecibido)/NumThreads;
+	if(n_Thread==NumThreads-1)	
+		fin=tamRecibido;
+	else
+		fin=((n_Thread+1)*tamRecibido)/NumThreads-1;
+
+	arregloNuevo = (int *)malloc(sizeof(int)*(fin-inicio));
+
+	printf("\nHola desde procesar\tSoy el thread %d\tInicio %d\tTermino %d,\n",n_Thread,inicio,fin);
+	for(int i=inicio;i<=fin;i++){
+		*(arregloNuevo+c) = *(arregloRecibido+i);
+		c++;
+	}	
+	for(int i=0; i<(fin-inicio); i++){
+		if(datoABuscarRecibido == arregloNuevo[i]){
 			bandera = '1';
 		}
 	}
 	
-	if(bandera == '1'){
-		printf("Hilo %d.\t", n_Thread);
-		printf("Numero encontrado.\n");
-		// printf("El elemento esta en la posicion: %d \n", i+1);
-	}
-	else{
-		printf("Hilo %d.\t", n_Thread);
-		printf("Numero no encontrado.\n");
-	}
+		if(bandera == '1'){
+			printf("Hilo %d.\t", n_Thread);
+			printf("Numero encontrado.\n");
+			// printf("El elemento esta en la posicion: %d \n", i+1);
+		}
+		else{
+			printf("Hilo %d.\t", n_Thread);
+			printf("Numero no encontrado.\n");
+		}
+
+	printf("\nBye desde procesar\tSoy el thread %d\tHe terminado\n",n_Thread);
 }
 
 /******** FUNCION PRINCIPAL ********/
@@ -87,14 +107,12 @@ int main (int argc, char *argv[]){
 	args.n = tam;
 	
 	for(i=1; i<=NumThreads; i++){
-		struct argumentos args ={i,datoABuscar,A,tam};
+		struct argumentos args ={0,datoABuscar,A,tam};
 		if(pthread_create(&thread[i], NULL, sequentialSearch, (void *)(&args)) != 0){
 			perror("El thread no pudo crearse");
 			exit(-1);
 		}
 	}
-	
-	sequentialSearch(0);
 	
 	for(i=1; i<=NumThreads; i++)
 		pthread_join(thread[i], NULL);
