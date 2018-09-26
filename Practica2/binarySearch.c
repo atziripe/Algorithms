@@ -8,7 +8,7 @@ PEREZ GARCIA ATZIRI***/
 
 /***********FUNCION BUSQUEDA BINARIA********************/
 /* La funcion recibe como parametros el arreglo, el tamaño de este y el dato a buscar.
- Regresa la posicion donde se encuentra el dato, o en caso contrario si este no se encuentra. */
+ Regresa el mensaje de si se encuentra el dato, o en caso contrario si este no se encuentra. */
 void binarySearch(int *A, int n, int buscar){
 	int final, medio, inicio = 0; // Variables para realizar la busqueda.
 	final = n-1;
@@ -29,9 +29,10 @@ void binarySearch(int *A, int n, int buscar){
 		}
 	}
 	if(bandera == '0')
-		printf("El numero no esta en el arreglo.\n");
+		printf("Numero no encontrado.\n");
 	else
-		printf("El numero se encuentra en la posicion: %d\n", medio+1);
+		printf("Numero encontrado");
+		// printf("El numero se encuentra en la posicion: %d\n", medio+1);
 }
 
 /***********FUNCION PRINCIPAL***************/
@@ -49,9 +50,15 @@ int main(int argc, char const *argv[]){
 		tam=atoi(argv[1]);
 	}
 	
+	// Dato a buscar
+	if(argc!=3){
+		printf("\nIndique numero a buscar - \nEjemplo: [user@equipo]$ %s %s 1000 %s \n",argv[0],argv[1]);
+		exit(-1);
+	}
+	buscar=atoi(argv[2]);
+	
 	//scanf("%d", &tam);
-
-	scanf("%d", &buscar);
+	//scanf("%d", &buscar);
 	
 	Arreglo = (int*)malloc(sizeof(int)*tam);
 	
