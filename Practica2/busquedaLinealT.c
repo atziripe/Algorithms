@@ -41,7 +41,6 @@ void *sequentialSearch(void *recibido){
 
 	arregloNuevo = (int *)malloc(sizeof(int)*(fin-inicio));
 
-	printf("\nHola desde procesar\tSoy el thread %d\tInicio %d\tTermino %d,\n",n_Thread,inicio,fin);
 	for(int i=inicio;i<=fin;i++){
 		*(arregloNuevo+c) = *(arregloRecibido+i);
 		c++;
@@ -51,20 +50,12 @@ void *sequentialSearch(void *recibido){
 			bandera = '1';
 		}
 	}
-	
-		if(bandera == '1'){
-			printf("Hilo %d.\t", n_Thread);
+		printf("Hilo %d. %d - %d\t", n_Thread,inicio,fin);
+		if(bandera == '1')
 			printf("Numero encontrado.\n");
-			// printf("El elemento esta en la posicion: %d \n", i+1);
-		}
-		else{
-			printf("Hilo %d.\t", n_Thread);
+		else
 			printf("Numero no encontrado.\n");
-		}
-
-	printf("\nBye desde procesar\tSoy el thread %d\tHe terminado\n",n_Thread);
 }
-
 /******** FUNCION PRINCIPAL ********/
 int main (int argc, char *argv[]){
 	int *A;
