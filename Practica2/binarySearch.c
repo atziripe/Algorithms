@@ -13,7 +13,7 @@ void binarySearch(int *A, int n, int buscar){
 	int final, medio, inicio = 0; // Variables para realizar la busqueda.
 	final = n-1;
 	int bandera = '0';
-	
+
 	while(inicio<=final){
 		medio = (inicio + final)/2;
 		if(buscar == *(A+medio)){
@@ -28,6 +28,7 @@ void binarySearch(int *A, int n, int buscar){
 			}
 		}
 	}
+
 	if(bandera == '0')
 		printf("Numero no encontrado.\n");
 	else
@@ -41,14 +42,11 @@ int main(int argc, char const *argv[]){
 	int *Arreglo; // Se declara el contenedor de elemento.
 	int i, tam, buscar;
 
-	if(argc!=2){
+	if(argc<2){
 		printf("\nIndique el tamanio del algoritmo - Ejemplo: [user@equipo]$ %s 100\n",argv[0]);
 		exit(1);
 	} 
-	//Tomar el segundo argumento como tamanio del algoritmo
-	else{
 		tam=atoi(argv[1]);
-	}
 	
 	// Dato a buscar
 	if(argc!=3){
@@ -59,15 +57,15 @@ int main(int argc, char const *argv[]){
 	
 	//scanf("%d", &tam);
 	//scanf("%d", &buscar);
-	
+
 	Arreglo = (int*)malloc(sizeof(int)*tam);
-	
+
 	// printf("Ingrese los elementos:\n");
 	for(i=0; i<tam; i++){
 		scanf("%d", Arreglo+i);
 	}
-	
+
 	binarySearch(Arreglo,tam, buscar);
-	
+
 	return 0; 
 }
