@@ -106,8 +106,8 @@ int main (int argc, char *argv[]){
 	args.arreglo = A;
 	args.n = tam;
 	
-	for(i=1; i<=NumThreads; i++){
-		struct argumentos args ={0,datoABuscar,A,tam};
+	for(int i=1; i<=NumThreads; i++){
+		struct argumentos args ={i,datoABuscar,A,tam};
 		if(pthread_create(&thread[i], NULL, sequentialSearch, (void *)(&args)) != 0){
 			perror("El thread no pudo crearse");
 			exit(-1);
