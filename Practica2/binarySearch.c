@@ -31,7 +31,7 @@ void binarySearch(int *A, int n, int buscar){
 	if(bandera == '0')
 		printf("Numero no encontrado.\n");
 	else
-		printf("Numero encontrado");
+		printf("Numero encontrado\n");
 		// printf("El numero se encuentra en la posicion: %d\n", medio+1);
 }
 
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]){
 	
 	// Dato a buscar
 	if(argc!=3){
-		printf("\nIndique numero a buscar - \nEjemplo: [user@equipo]$ %s %s 1000 %s \n",argv[0],argv[1]);
+		printf("\nIndique numero a buscar - \nEjemplo: [user@equipo]$ %s 1000 %s \n",argv[0],argv[1]);
 		exit(-1);
 	}
 	buscar=atoi(argv[2]);
