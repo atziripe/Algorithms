@@ -40,8 +40,8 @@ int main(int argc, char *argv[]){
   double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
   uswtime(&utime0, &stime0, &wtime0);//Iniciar el conteo del tiempo para las evaluaciones de rendimiento  
   for(int k; k<20; k++){
-    array = (int*)malloc(sizeof(int)*tamanios[0]);
-    for(int j=0; j<tamanios[0]; ++j){
+    array = (int*)malloc(sizeof(int)*tamanios[k]);
+    for(int j=0; j<tamanios[k]; ++j){
       scanf("%d", (array+j));
       if(*(array+j))
         arbol=InsOrd(*(array+j), arbol);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
       uswtime(&utime1, &stime1, &wtime1);//Evaluar los tiempos de ejecución 
       //Cálculo del tiempo de ejecución del programa
       printf("busqueda | N | total | CPU | EyS | CPU/Wall\n");
-      printf("%d | %d | %.10f s | %.10f s | %.10f s | %.10f\n",numeros[i], tamanios[0], wtime1 - wtime0, utime1 - utime0, stime1 - stime0,100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
+      printf("%d | %d | %.10f s | %.10f s | %.10f s | %.10f\n",numeros[i], tamanios[k], wtime1 - wtime0, utime1 - utime0, stime1 - stime0,100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
       printf("*****************************************************************************************\n"); 
    }
     free(array);
