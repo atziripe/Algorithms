@@ -73,21 +73,10 @@ int main(int argc, char const *argv[]){
 	
 	//Cálculo del tiempo de ejecución del programa
 	printf("\n");
-	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU) %.10f s\n",  utime1 - utime0);
-	printf("sys (Tiempo en acciónes de E/S)  %.10f s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
+	printf("num. problema | real (tiempo total) | Procesamiento CPU | E/S\n");
+	printf("%.10f s | %.10f s | %.10f s", wtime1 - wtime0, utime1 - utime0, stime1 - stime0);
 	printf("\n");
 	
-	//Mostrar los tiempos en formato exponecial
-	printf("\n");
-	printf("real (Tiempo total)  %.10e s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU) %.10e s\n",  utime1 - utime0);
-	printf("sys (Tiempo en acciónes de E/S)  %.10e s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-	//******************************************************************
-
 	//Terminar programa normalmente	
 	exit (0);	
 
